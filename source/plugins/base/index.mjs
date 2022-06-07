@@ -169,7 +169,7 @@ export default async function({login, graphql, rest, data, q, queries, imports, 
           data.user[type].nodes.push(...nodes)
           pushed = nodes.length
           console.debug(`metrics/compute/${login}/base > retrieved ${pushed} ${type} after ${cursor}`)
-          if (pushed < repositories) {
+          if (pushed < Math.min(repositories, _batch)) {
             console.debug(`metrics/compute/${login}/base > retrieved less repositories than expected, probably no more to fetch`)
             break
           }
